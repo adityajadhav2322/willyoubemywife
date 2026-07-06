@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest Fatemeh ❤️</title>
+    <!-- Google Fonts for Romantic & Clean Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Confetti Library for the Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Background Hearts Animation */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            animation: floatUp 10s linear infinite;
+            bottom: -10vh;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-115vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Card Design */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        /* Animated Diamond Ring SVG */
+        .ring-container {
+            margin: 15px auto 25px;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            animation: floatRing 3s ease-in-out infinite;
+        }
+
+        @keyframes floatRing {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #fff 0%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
+            animation: pulseSparkle 1.5s infinite alternate;
+        }
+
+        .sparkle-1 { top: 10px; right: 25px; animation-delay: 0.2s; }
+        .sparkle-2 { top: 30px; left: 20px; animation-delay: 0.7s; }
+
+        @keyframes pulseSparkle {
+            0% { transform: scale(0.5); opacity: 0.4; }
+            100% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #d81b60;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        p.message {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        h2.question {
+            font-size: 1.6rem;
+            color: #880e4f;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* Interactive Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 60px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+            background: linear-gradient(45deg, #c2185b, #e91e63);
+        }
+
+        .btn-no {
+            background: #f5f5f5;
+            color: #777;
+            position: relative;
+        }
+
+        /* Celebration Screen (Hidden by Default) */
+        .celebration {
+            display: none;
+        }
+
+        .celebration h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #d81b60;
+            margin-bottom: 15px;
+        }
+
+        .celebration p {
+            font-size: 1.2rem;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Background Floating Hearts -->
+    <div id="heart-container"></div>
+
+    <!-- Main Proposal Card -->
+    <div class="card" id="proposal-card">
+        
+        <!-- Animated Ring -->
+        <div class="ring-container">
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
+            <!-- Rose Gold Diamond Ring SVG -->
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <!-- Ring Band -->
+                <circle cx="50" cy="58" r="30" fill="none" stroke="#e0ac69" stroke-width="6" />
+                <circle cx="50" cy="58" r="30" fill="none" stroke="#ffd8a8" stroke-width="2" />
+                <!-- Diamond Setting/Prongs -->
+                <polygon points="40,31 60,31 54,22 46,22" fill="#e0ac69" />
+                <!-- The Diamond -->
+                <polygon points="50,8 65,22 50,34 35,22" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5"/>
+                <polygon points="50,8 65,22 50,22" fill="#bbdefb" />
+                <polygon points="50,34 65,22 50,22" fill="#90caf9" />
+                <!-- Diamond Shine Lines -->
+                <line x1="50" y1="8" x2="50" y2="34" stroke="#ffffff" stroke-width="1"/>
+                <line x1="35" y1="22" x2="65" y2="22" stroke="#ffffff" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <!-- Proposal Content -->
+        <h1>Fatemeh</h1>
+        <p class="message">
+            Every moment with you has felt like a beautiful dream I never want to wake up from. You bring so much joy, light, and warmth into my life. I cannot imagine my future without you by my side.
+        </p>
+        <h2 class="question">Will you be my wife?</h2>
+
+        <!-- Interactive Buttons -->
+        <div class="button-group">
+            <button class="btn btn-yes" onclick="sayYes()">YES! 💖</button>
+            <button class="btn btn-no" id="noBtn" onmouseover="dodgeNo()" onclick="dodgeNo()">No</button>
+        </div>
+    </div>
+
+    <!-- Success Celebration Card -->
+    <div class="card celebration" id="celebration-card">
+        <h2>She Said Yes! 🎉</h2>
+        <div style="font-size: 60px; margin: 20px 0;">💍❤️🥂</div>
+        <p>I love you infinitely, Fatemeh! Here is to our forever.</p>
+    </div>
+
+    <script>
+        // Generate floating background hearts
+        const heartContainer = document.getElementById('heart-container');
+        const hearts = ['❤️', '💖', '🌸', '✨', '💍'];
+        
+        for (let i = 0; i < 25; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-bg';
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            heartContainer.appendChild(heart);
+        }
+
+        // Playful "No" button dodge function
+        function dodgeNo() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Generate random positions within safe window bounds
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100) - ((window.innerWidth - noBtn.offsetWidth) / 2) + 50;
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100) - ((window.innerHeight - noBtn.offsetHeight) / 2) + 50;
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = '50%';
+            noBtn.style.top = '50%';
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // Triggered when she clicks "YES!"
+        function sayYes() {
+            // Hide proposal card, show celebration card
+            document.getElementById('proposal-card').style.display = 'none';
+            document.getElementById('celebration-card').style.display = 'block';
+
+            // Launch continuous confetti
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                // Launch fireworks from both sides
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
